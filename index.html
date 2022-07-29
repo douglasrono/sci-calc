@@ -1,0 +1,146 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Douglas Kiprono">
+    <meta name="keywords" content="calculator, javascript, es6, eval,Douglas ,kiprono, github">
+    <meta name="description" content="a mathematical calculator made designed with javascript, css (grid,flex) and html">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    background-color: rgb(15, 121, 213);
+}
+.container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: light-blue;
+}
+.calc{
+    position: relative;
+    box-shadow: 6px 6px 13px  blue,
+         -6px -6px 13px blue;
+    border-radius: 18px;   
+    padding: 1em;
+    display: grid; 
+    grid-template-columns: repeat(4,70px);
+}
+#credit{
+    position: absolute;
+    bottom: 12px;
+    left: 1.5em;
+    background: transparent;
+    text-transform: uppercase;
+    font-size: .5em;
+    color: rgb(226, 232, 221);
+}
+#credit a{
+    color: aliceblue;
+    text-decoration: none;
+}
+input{
+    grid-column: span 4;
+    height: 2.4em;
+    border: none;
+    border-radius: 12px;
+    color: rgb(54, 224, 12);  
+    text-align: end;
+    margin: 40px 0px 30px 0px;
+    padding: 20px;
+    font-size: 2.2em;
+    background-color: #fefefe;
+}
+button{
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    box-shadow: inset 6px 6px 13px wheat,
+                inset 6px 6px 13px rgb(57, 56, 55);
+   border:none;             
+    border-radius: 50%;
+    color: rgb(94, 248, 5);  
+    margin: 10px;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+#equals{
+    width: 120px;
+    border-radius: 40px;
+     box-shadow: inset 6px 6px 13px wheat,
+                inset 6px 6px 13px rgb(57, 56, 55);
+    background: white;            
+
+}
+#del{
+    background-color: rgb(244, 16, 16);
+    box-shadow: none;
+    color: gray;
+    font-size: 1em;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="calc">
+            <input type="text" id="screen" placeholder="0">
+            <button onclick="calc('*')">*</button>
+            <button onclick="calc('%')">%</button>
+            <button onclick="calc('/')">/</button>
+            <button onclick="callDel()" id="del">DEL</button>
+            <button onclick="calc('1')">1</button>
+            <button onclick="calc('2')">2</button>
+            <button onclick="calc('3')">3</button>
+            <button onclick="calc('-')">-</button>
+            <button onclick="calc('4')">4</button>
+            <button onclick="calc('5')">5</button>
+            <button onclick="calc('6')">6</button>
+            <button onclick="calc('+')">+</button>
+            <button onclick="calc('7')">7</button>
+            <button onclick="calc('8')">8</button>
+            <button onclick="calc('9')">9</button>
+            <button onclick="callClear('clear')">C</button>
+            <button onclick="calc('.')">.</button>
+            <button onclick="callPi('callPi')">PI</button>
+            <button onclick="calc('0')">0</button>
+            <button onclick="callEqual()" id="equal" >=</button>
+            <h5 id="credit"> &copy; <a href="https://wwww.douglasrono.github.io" target="_blank">douglas</a></h5>
+        </div>
+        
+    </div>
+    <script>
+let res = document.getElementById("screen");
+let calc = (num)=>{
+    res.value = res.value+num;
+}
+// eval() method / compute math operations
+let callEqual =()=>{
+    try{
+        res.value=eval(res.value);
+    }
+    catch(err){
+        res.value="MATH ERROR!";
+    }
+}
+// empty the screen
+let callClear =()=>{
+    res.value="";
+}
+
+const callDel =()=>{
+    // remove the last number
+    res.value=res.value.slice(0,-1);
+}
+// math.pi object.property
+const callPi =()=>{
+    res.value=Math.PI;
+}
+    </script>
+</body>
+</html>
